@@ -13,6 +13,11 @@ fn knock00() {
 //01. 「パタトクカシーー」
 //「パタトクカシーー」という文字列の1,3,5,7文字目を取り出して連結した文字列を得よ．
 fn knock01() {
+    let input = "パタトクカシーー";
+    let target = "パトカー";
+    let answer = input.chars().step_by(2).collect::<String>();
+
+    assert_eq!(answer, target);
 }
 
 //02. 「パトカー」＋「タクシー」＝「パタトクカシーー」
