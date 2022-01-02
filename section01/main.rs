@@ -34,7 +34,16 @@ fn knock02() {
 //03. 円周率
 //"Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics."という文を単語に分解し，各単語の（アルファベットの）文字数を先頭から出現順に並べたリストを作成せよ．
 fn knock03() {
+    let input = "Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics.";
+    let answer: Vec<i32> = vec![3,1,4,1,5,9,2,6,5,3,5,8,9,7,9];
+    let target = input
+                 .replace(",", "")
+                 .replace(".", "")
+                 .split(" ")
+                 .map(|w| w.len() as i32)
+                 .collect::<Vec<i32>>();
 
+    assert_eq!(answer, target);
 }
 
 //04. 元素記号
