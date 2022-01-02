@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 //第1章: 準備運動
 
 //00. 文字列の逆順
@@ -49,7 +51,52 @@ fn knock03() {
 //04. 元素記号
 //"Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause. Arthur King Can."という文を単語に分解し，1, 5, 6, 7, 8, 9, 15, 16, 19番目の単語は先頭の1文字，それ以外の単語は先頭に2文字を取り出し，取り出した文字列から単語の位置（先頭から何番目の単語か）への連想配列（辞書型もしくはマップ型）を作成せよ．
 fn knock04() {
+    let input = "Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause. Arthur King Can.";
+    let indexes = vec![0, 4, 5, 6, 7, 8, 14, 15, 18];
+    let target = vec![
+            ("H".to_owned(),  1),
+            ("He".to_owned(), 2),
+            ("Li".to_owned(), 3),
+            ("Be".to_owned(), 4),
+            ("B".to_owned(),  5),
+            ("C".to_owned(),  6),
+            ("N".to_owned(),  7),
+            ("O".to_owned(),  8),
+            ("F".to_owned(),  9),
+            ("Ne".to_owned(), 10),
+            ("Na".to_owned(), 11),
+            ("Mi".to_owned(), 12),
+            ("Al".to_owned(), 13),
+            ("Si".to_owned(), 14),
+            ("P".to_owned(),  15),
+            ("S".to_owned(),  16),
+            ("Cl".to_owned(), 17),
+            ("Ar".to_owned(), 18),
+            ("K".to_owned(),  19),
+            ("Ca".to_owned(), 20),
+        ]
+        .into_iter()
+        .collect::<HashMap<String, i32>>();
 
+    let answer = input
+                 .replace(",", "")
+                 .replace(".", "")
+                 .split(" ")
+                 .enumerate()
+                 .map(|(i, w)| {
+                     if indexes.contains(&i) {
+                        (format!("{}", &w[..1]), (i + 1) as i32)
+
+                     } else {
+                        (format!("{}", &w[..2]), (i + 1) as i32)
+
+                     }
+                 })
+                 .collect::<HashMap<String, i32>>();
+
+    for (k, v) in &target {
+        assert_eq!(v, &answer[k]);
+    }
 }
 
 //05. n-gram
