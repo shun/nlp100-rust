@@ -23,6 +23,12 @@ fn knock01() {
 //02. 「パトカー」＋「タクシー」＝「パタトクカシーー」
 //「パトカー」＋「タクシー」の文字を先頭から交互に連結して文字列「パタトクカシーー」を得よ．
 fn knock02() {
+    let input1 = "パトカー";
+    let input2 = "タクシー";
+    let target = "パタトクカシーー";
+    let answer = input1.chars().zip(input2.chars()).map(|(c1, c2)| format!("{}{}", c1, c2)).collect::<String>();
+
+    assert_eq!(answer, target);
 }
 
 //03. 円周率
